@@ -1,0 +1,12 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: .
+    depends_on:
+      - memcached
+    ports:
+      - "31337:31337"
+    volumes:
+      - .:/pkgs
+  memcached:
+    image: memcached

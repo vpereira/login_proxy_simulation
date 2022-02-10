@@ -17,4 +17,6 @@ COPY listen.conf /etc/apache2
 COPY mod_auth_memcookie.conf /etc/apache2
 COPY httpd.conf /etc/apache2
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+RUN htpasswd -c -b /etc/apache2/htpasswd admin opensuse
+
+ENTRYPOINT ["/usr/sbin/apachectl","-D","FOREGROUND"]
